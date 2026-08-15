@@ -1,0 +1,17 @@
+services:
+  autonomous-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: autonomous-coding-agent:local
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      AUTONOMOUS_DEFAULT_MODEL: ${AUTONOMOUS_DEFAULT_MODEL:-claude-sonnet-4-5-20250929}
+      AUTONOMOUS_AUTO_CONTINUE_DELAY_SECONDS: ${AUTONOMOUS_AUTO_CONTINUE_DELAY_SECONDS:-3}
+      AUTONOMOUS_MAX_TURNS: ${AUTONOMOUS_MAX_TURNS:-1000}
+    volumes:
+      - ./generations:/app/generations
+      - ./logs:/app/logs
+    stdin_open: true
+    tty: true
+    command: ["--project-dir", "autonomous_demo_project", "--max-iterations", "1"]
