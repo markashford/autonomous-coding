@@ -1,16 +1,13 @@
 # Autonomous Coding Agent Harness
 
-[![CI](https://img.shields.io/github/actions/workflow/status/your-username/autonomous-coding/ci.yml?branch=main&label=CI)](#testing-and-quality)
+[![CI](https://img.shields.io/github/actions/workflow/status/markashford91/autonomous-coding/ci.yml?branch=main&label=CI)](#testing-and-quality)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](#quick-start-local)
 [![Docker](https://img.shields.io/badge/Container-Ready-informational)](#quick-start-docker)
 
-Production-style autonomous coding harness built around the Claude Agent SDK.
+Autonomous coding harness built around the Claude Agent SDK.
 It runs a two-phase agent workflow (initializer + coding agent), preserves state
 between sessions, enforces command-level security controls, and includes CI,
 tests, and containerized execution.
-
-This repository is designed to be portfolio-friendly: clear architecture,
-incremental development workflow, and operational tooling you can demo quickly.
 
 
 ## System Overview
@@ -79,6 +76,8 @@ The compose setup mounts generations and logs for persistence between runs.
 | --auto-continue-delay | Delay in seconds between sessions | 3 |
 | --max-turns | Max Claude turns per session | 1000 |
 | --model | Claude model to use | claude-sonnet-4-5-20250929 |
+| --print-config | Print resolved settings and exit | off |
+| --version | Print the harness version | |
 
 ## Environment Variables
 
@@ -151,13 +150,11 @@ generations/my_project/
 - Tune allowed shell commands in security.py for your policy boundaries.
 - Override runtime defaults through environment variables for experiments.
 
-## Notes For Public GitHub Publishing
+## License
 
-- Keep API keys out of commits and CI logs.
-- Add your preferred open-source license before publishing publicly.
-- Replace badge owner/repo placeholders with your actual GitHub repository.
+MIT. See LICENSE.
 
 ## Acknowledgment
 
-Built as an autonomous coding harness around the Claude Agent SDK with a focus
-on reproducibility, safety, and portfolio-grade engineering practices.
+Built as an autonomous coding harness around the Claude Agent SDK, with a focus
+on reproducibility and command-level safety.
