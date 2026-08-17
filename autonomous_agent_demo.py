@@ -21,6 +21,8 @@ from agent import run_autonomous_agent
 from settings import AppSettings, load_settings, resolve_project_dir
 from ui import TerminalUI
 
+__version__ = "0.1.0"
+
 
 def parse_args(settings: AppSettings) -> argparse.Namespace:
     """Parse command line arguments."""
@@ -88,6 +90,18 @@ Environment Variables:
         help=f"Claude model to use (default: {settings.default_model})",
     )
 
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"autonomous-coding {__version__}",
+    )
+
+    parser.add_argument(
+        "--print-config",
+        action="store_true",
+        help="Print resolved settings and exit",
+    )
+
     return parser.parse_args()
 
 
@@ -96,6 +110,17 @@ def main() -> None:
     settings = load_settings()
     args = parse_args(settings)
     ui = TerminalUI()
+
+    if args.print_config:
+        project_dir = resolve_project_dir(args.project_dir, settings.generations_root)
+        print(f"version={__version__}")
+        print(f"model={args.model}")
+        print(f"project_dir={project_dir}")
+        print(f"generations_root={settings.generations_root}")
+        print(f"auto_continue_delay={args.auto_continue_delay}")
+        print(f"max_turns={args.max_turns}")
+        print(f"max_iterations={args.max_iterations}")
+        return
 
     # Check for API key
     if not os.environ.get("ANTHROPIC_API_KEY"):
