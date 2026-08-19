@@ -127,6 +127,7 @@ make install-dev
 make test
 make test-legacy
 make run
+make print-config
 make docker-build
 make docker-run
 ```
